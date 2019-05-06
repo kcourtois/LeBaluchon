@@ -9,7 +9,7 @@
 import Foundation
 
 class ApiKeys {
-    static let fixerBaseURL:String = "http://data.fixer.io/api/"
+    static let fixerBaseURL: String = "http://data.fixer.io/api/"
     /*
      GET
      http://data.fixer.io/api/latest?access_key=[APPKEY]&base=EUR&symbols=USD
@@ -26,11 +26,10 @@ class ApiKeys {
 
      */
 
-
-    static let googleTranslateBaseURL:String = "https://translation.googleapis.com/language/translate/v2"
+    static let googleTranslateBaseURL: String = "https://translation.googleapis.com/language/translate/v2"
     /*
      POST key=apikey, source=fr, target =en, q=text to translate
-     https://translation.googleapis.com/language/translate/v2?key=[APPKEY]&source=fr&target=en&q=bonjour, je m'appelle Kévin
+     https://translation.googleapis.com/language/translate/v2?key=[APPKEY]&source=fr&target=en&q=bonjour
 
      {
          "data": {
@@ -44,7 +43,7 @@ class ApiKeys {
 
      */
 
-    static let openWeatherBaseURL:String = "api.openweathermap.org/data/2.5/weather"
+    static let openWeatherBaseURL: String = "api.openweathermap.org/data/2.5/weather"
     /*
      GET appid=apikey, q=city
 
@@ -93,11 +92,13 @@ class ApiKeys {
         "cod": 200
     }*/
 
-
-    static func valueForAPIKey(named keyname:String) -> String {
+    static func valueForAPIKey(named keyname: String) -> String? {
         let filePath = Bundle.main.path(forResource: "ApiKeys", ofType: "plist")
-        let plist = NSDictionary(contentsOfFile:filePath!)
-        let value = plist?.object(forKey: keyname) as! String
-        return value
+        let plist = NSDictionary(contentsOfFile: filePath!)
+        if let value = plist?.object(forKey: keyname) as? String {
+            return value
+        } else {
+            return nil
+        }
     }
 }
