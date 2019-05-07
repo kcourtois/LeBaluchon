@@ -92,13 +92,7 @@ class ApiKeys {
         "cod": 200
     }*/
 
-    static func valueForAPIKey(named keyname: String) -> String? {
-        let filePath = Bundle.main.path(forResource: "ApiKeys", ofType: "plist")
-        let plist = NSDictionary(contentsOfFile: filePath!)
-        if let value = plist?.object(forKey: keyname) as? String {
-            return value
-        } else {
-            return nil
-        }
-    }
+    static let fixerKey: String = "55109e65d35de13bace3f8c5f0197fe6"
+    static let googleTranslateKey: String = "AIzaSyBgwZKst7A-OkBx1uskllQ-6RE-IyTSzf8"
+    static let openWeatherKey: String = "d7dd4dd708fae6201d133f948ab3ea38"
 }
