@@ -16,6 +16,7 @@
 		9E66972522807CC100C385D2 /* ExchangeRateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66972422807CC100C385D2 /* ExchangeRateTests.swift */; };
 		9E66972722807DFF00C385D2 /* UrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66972622807DFF00C385D2 /* UrlSession.swift */; };
 		9E669729228172A000C385D2 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E669728228172A000C385D2 /* FakeResponseData.swift */; };
+		9E66972B22844F1C00C385D2 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66972A22844F1C00C385D2 /* ExchangeRate.swift */; };
 		9E765FA82262527F005DF98B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E765FA72262527F005DF98B /* AppDelegate.swift */; };
 		9E765FAD2262527F005DF98B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E765FAB2262527F005DF98B /* Main.storyboard */; };
 		9E765FAF22625281005DF98B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E765FAE22625281005DF98B /* Assets.xcassets */; };
@@ -37,11 +38,12 @@
 		9E66971A22804D3500C385D2 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		9E66971C22804D5300C385D2 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		9E66971E22804D6400C385D2 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
-		9E6697202280504F00C385D2 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
+		9E6697202280504F00C385D2 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExchangeRateService.swift; path = "../Supporting Files/ExchangeRateService.swift"; sourceTree = "<group>"; };
 		9E66972222807C4500C385D2 /* TestExchangeRate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestExchangeRate.json; sourceTree = "<group>"; };
 		9E66972422807CC100C385D2 /* ExchangeRateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTests.swift; sourceTree = "<group>"; };
 		9E66972622807DFF00C385D2 /* UrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSession.swift; sourceTree = "<group>"; };
 		9E669728228172A000C385D2 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		9E66972A22844F1C00C385D2 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		9E765FA42262527F005DF98B /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E765FA72262527F005DF98B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E765FAC2262527F005DF98B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,8 +75,9 @@
 		9E669715228003ED00C385D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9E6697162280041300C385D2 /* ApiKeys.swift */,
 				9E6697202280504F00C385D2 /* ExchangeRateService.swift */,
+				9E6697162280041300C385D2 /* ApiKeys.swift */,
+				9E66972A22844F1C00C385D2 /* ExchangeRate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				9E66971D22804D5300C385D2 /* ExchangeViewController.swift in Sources */,
 				9E66971B22804D3500C385D2 /* TranslateViewController.swift in Sources */,
 				9E765FA82262527F005DF98B /* AppDelegate.swift in Sources */,
+				9E66972B22844F1C00C385D2 /* ExchangeRate.swift in Sources */,
 				9E6697172280041300C385D2 /* ApiKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

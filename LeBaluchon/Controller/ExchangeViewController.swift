@@ -14,26 +14,48 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var eurosTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
 
+    let exchangeRate =  ExchangeRate()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        getExchangeRate()
+        setRateLabel()
     }
 
-    func getExchangeRate() {
-        ExchangeRateService.shared.getRate { (success, rateReq) in
-            if success, let rateReq = rateReq, let rate = rateReq.rates {
-                self.exchangeRateLabel.text = "\(rate.USD)"
-            } else {
-                //self.presentAlert()
-                self.exchangeRateLabel.text = "Error"
-            }
+    func setRateLabel() {
+        guard let rate = exchangeRate.rate else {
+            presentAlert(titre: "Erreur", message: "Le taux de change EUR/USD n'a pas pu être téléchargé.")
+            exchangeRateLabel.text = "Inconnu"
+            return
+        }
+        exchangeRateLabel.text = "\(rate)"
+    }
+
+    @IBAction func convertEurToUSD() {
+        eurosTextField.resignFirstResponder()
+        guard let rate = exchangeRate.rate, let valueToConvert = Double(eurosTextField.text!) else {
+            presentAlert(titre: "Erreur", message: "Impossible d'effectuer la conversion.")
+            return
         }
 
+        let usdValue = valueToConvert*rate
+        resultLabel.text = "\(valueToConvert) EUR => \(String(format: "%.2f", usdValue)) USD"
     }
 
-    private func presentAlert() {
-        let alertVC = UIAlertController(title: "Error", message: "The logo download failed.", preferredStyle: .alert)
+    private func presentAlert(titre: String, message: String) {
+        let alertVC = UIAlertController(title: titre, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Keyboard
+extension ExchangeViewController: UITextFieldDelegate {
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        eurosTextField.resignFirstResponder()
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

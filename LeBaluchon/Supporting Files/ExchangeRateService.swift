@@ -12,14 +12,12 @@ import UIKit
 struct RateRequest: Decodable {
     let success: Bool?
     let error: ErrorDecodeFixer?
-    //let timestamp: Int?
-    //let base: String?
     let date: String?
     let rates: UsdRate?
 }
 
 struct UsdRate: Decodable {
-    let USD: Float
+    let USD: Double
 }
 
 struct ErrorDecodeFixer: Decodable {
