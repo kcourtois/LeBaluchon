@@ -9,23 +9,6 @@
 import Foundation
 
 class ApiKeys {
-    static let fixerBaseURL: String = "http://data.fixer.io/api/"
-    /*
-     GET
-     http://data.fixer.io/api/latest?access_key=[APPKEY]&base=EUR&symbols=USD
-
-     {
-         "success": true,
-         "timestamp": 1557122645,
-         "base": "EUR",
-         "date": "2019-05-06",
-         "rates": {
-         "USD": 1.119207
-         }
-     }
-
-     */
-
     static let googleTranslateBaseURL: String = "https://translation.googleapis.com/language/translate/v2"
     /*
      POST key=apikey, source=fr, target =en, q=text to translate

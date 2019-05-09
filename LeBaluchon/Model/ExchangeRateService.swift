@@ -14,7 +14,7 @@ struct RateRequest: Decodable {
     let error: ErrorDecodeFixer?
     //let timestamp: Int?
     //let base: String?
-    //let date: String?
+    let date: String?
     let rates: UsdRate?
 }
 
@@ -29,6 +29,7 @@ struct ErrorDecodeFixer: Decodable {
 
 class ExchangeRateService {
     static var shared = ExchangeRateService()
+    static let userDefaultsRateKey = "RateRequest"
     private var exchangeRateSession = URLSession(configuration: .default)
     private let fixerUrl = URL(string: "http://data.fixer.io/api/latest?access_key=\(ApiKeys.fixerKey)&symbols=USD")!
     private var task: URLSessionDataTask?
@@ -38,32 +39,69 @@ class ExchangeRateService {
         self.exchangeRateSession = exchangeRateSession
     }
 
-    func getRate(callback: @escaping (Bool, UsdRate?) -> Void) {
-        var request = URLRequest(url: fixerUrl)
-        request.httpMethod = "POST"
+    func getRate(callback: @escaping (Bool, RateRequest?) -> Void) {
+        if needsNewRates() {
+            var request = URLRequest(url: fixerUrl)
+            request.httpMethod = "POST"
 
-        task?.cancel()
-        task = exchangeRateSession.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    callback(false, nil)
-                    return
-                }
-
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    callback(false, nil)
-                    return
-                }
-
-                guard let responseJSON = try? JSONDecoder().decode(RateRequest.self, from: data),
-                    responseJSON.success == true, responseJSON.error == nil else {
+            task?.cancel()
+            task = exchangeRateSession.dataTask(with: request) { (data, response, error) in
+                DispatchQueue.main.async {
+                    guard let data = data, error == nil else {
                         callback(false, nil)
                         return
-                }
+                    }
 
-                callback(true, responseJSON.rates)
+                    guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                        callback(false, nil)
+                        return
+                    }
+
+                    guard let responseJSON = try? JSONDecoder().decode(RateRequest.self, from: data),
+                        responseJSON.success == true, responseJSON.error == nil else {
+                            callback(false, nil)
+                            return
+                    }
+                    self.storeRateRequest(rateRequest: data)
+                    callback(true, responseJSON)
+                }
             }
+            task?.resume()
+        } else {
+            callback(true, readRateRequest())
         }
-        task?.resume()
+    }
+
+    private func needsNewRates() -> Bool {
+        guard let rateRequest = readRateRequest(), let dateStored = rateRequest.date else {
+            return true
+        }
+        if dateStored == getStringDate() {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    private func getStringDate() -> String {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = Date()
+        return dateFormatter.string(from: date)
+    }
+
+    private func storeRateRequest(rateRequest: Data) {
+        UserDefaults.standard.set(rateRequest, forKey: ExchangeRateService.userDefaultsRateKey)
+    }
+
+    private func readRateRequest() -> RateRequest? {
+        if let data = UserDefaults.standard.data(forKey: ExchangeRateService.userDefaultsRateKey) {
+            guard let rateRequest = try? JSONDecoder().decode(RateRequest.self, from: data) else {
+                return nil
+            }
+            return rateRequest
+        } else {
+            return nil
+        }
     }
 }

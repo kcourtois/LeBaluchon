@@ -19,31 +19,21 @@ class ExchangeViewController: UIViewController {
         getExchangeRate()
     }
 
-    private func presentAlert() {
-        let alertVC = UIAlertController(title: "Error", message: "The logo download failed.", preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
-
     func getExchangeRate() {
-        //toggleActivityIndicator(shown: true)
-
-        ExchangeRateService.shared.getRate { (success, rate) in
-            //self.toggleActivityIndicator(shown: false)
-            if success, let rate = rate {
+        ExchangeRateService.shared.getRate { (success, rateReq) in
+            if success, let rateReq = rateReq, let rate = rateReq.rates {
                 self.exchangeRateLabel.text = "\(rate.USD)"
-                print("RATE: \(rate)")
             } else {
                 //self.presentAlert()
                 self.exchangeRateLabel.text = "Error"
-                print("RATE: Error")
             }
         }
 
     }
 
-    private func toggleActivityIndicator(shown: Bool) {
-        //activityIndicator.isHidden = !shown
-        //searchButton.isHidden = shown
+    private func presentAlert() {
+        let alertVC = UIAlertController(title: "Error", message: "The logo download failed.", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
 }

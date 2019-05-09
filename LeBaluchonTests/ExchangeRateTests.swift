@@ -11,6 +11,11 @@ import Foundation
 import XCTest
 
 class ExchangeRateTests: XCTestCase {
+
+    override func setUp() {
+        UserDefaults.standard.removeObject(forKey: ExchangeRateService.userDefaultsRateKey)
+    }
+
     func testGetExchangeRateShouldPostFailedCallback() {
         // Given
         let exchangeRateService = ExchangeRateService(
@@ -102,11 +107,36 @@ class ExchangeRateTests: XCTestCase {
 
             let USD: Float = 1.118468
 
-            XCTAssertEqual(USD, exchangeRate!.USD)
+            XCTAssertEqual(USD, exchangeRate!.rates!.USD)
 
             expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 0.01)
+    }
+
+    func testGetExchangeRateShouldPostSuccessCallbackIfUserdefaultsSet() {
+        // Given
+        UserDefaults.standard.set(FakeResponseData.exchangeRateCorrectData,
+                                  forKey: ExchangeRateService.userDefaultsRateKey)
+        let exchangeRateService = ExchangeRateService(
+            exchangeRateSession: URLSessionFake(
+                data: FakeResponseData.exchangeRateCorrectData,
+                response: FakeResponseData.exchangeRateResponseOK,
+                error: nil))
+
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        exchangeRateService.getRate { (success, exchangeRate) in
+            // Then
+            XCTAssertTrue(success)
+            XCTAssertNotNil(exchangeRate)
+
+            let USD: Float = 1.118468
+
+            XCTAssertEqual(USD, exchangeRate!.rates!.USD)
+
+            expectation.fulfill()
+        }
     }
 }
