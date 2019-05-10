@@ -10,7 +10,13 @@ import UIKit
 
 class TranslateViewController: UIViewController {
 
+    @IBOutlet weak var textToTranslate: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    @IBAction func translateText() {
+
     }
 }

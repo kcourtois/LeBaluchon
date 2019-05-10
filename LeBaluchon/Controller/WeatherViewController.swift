@@ -10,6 +10,9 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    @IBOutlet weak var weatherNemours: UILabel!
+    @IBOutlet weak var weatherNY: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         WeatherService.shared.getWeather { (success, jsonObj) in

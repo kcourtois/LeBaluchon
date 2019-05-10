@@ -13,6 +13,7 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var exchangeRateLabel: UILabel!
     @IBOutlet weak var eurosTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var eurLabel: UILabel!
 
     let exchangeRate =  ExchangeRate()
 
@@ -27,7 +28,7 @@ class ExchangeViewController: UIViewController {
             exchangeRateLabel.text = "Inconnu"
             return
         }
-        exchangeRateLabel.text = "\(rate)"
+        exchangeRateLabel.text = "Taux actuel: \(rate)"
     }
 
     @IBAction func convertEurToUSD() {
@@ -38,7 +39,8 @@ class ExchangeViewController: UIViewController {
             return
         }
 
-        resultLabel.text = "\(valueToConvert) EUR => \(String(format: "%.2f", result)) USD"
+        eurLabel.text = "\(valueToConvert)"
+        resultLabel.text = "\(String(format: "%.2f", result))"
     }
 
     private func presentAlert(titre: String, message: String) {

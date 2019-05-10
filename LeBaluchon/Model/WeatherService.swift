@@ -19,14 +19,14 @@ struct Weather: Decodable {
     let main: String
     let description: String
     let icon: String
-    //TODO: icon String to Enum
+    //TODO: icon image download https://openweathermap.org/weather-conditions
 }
 
 class WeatherService {
     static var shared = WeatherService()
     private var weatherSession = URLSession(configuration: .default)
-    private let weatherUrlNemours =
-        URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=\(ApiKeys.openWeatherKey)&q=Nemours,fr")!
+    // swiftlint:disable:next line_length
+    private let weatherUrlNemours = URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=\(ApiKeys.openWeatherKey)&q=Nemours,fr&lang=fr&units=metric")!
     private var task: URLSessionDataTask?
     private init() {}
 
