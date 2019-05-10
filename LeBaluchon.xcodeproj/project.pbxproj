@@ -12,11 +12,18 @@
 		9E66971D22804D5300C385D2 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66971C22804D5300C385D2 /* ExchangeViewController.swift */; };
 		9E66971F22804D6400C385D2 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66971E22804D6400C385D2 /* WeatherViewController.swift */; };
 		9E6697212280504F00C385D2 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6697202280504F00C385D2 /* ExchangeRateService.swift */; };
-		9E66972322807C4500C385D2 /* TestExchangeRate.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E66972222807C4500C385D2 /* TestExchangeRate.json */; };
+		9E66972322807C4500C385D2 /* New_ExchangeRate.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E66972222807C4500C385D2 /* New_ExchangeRate.json */; };
 		9E66972522807CC100C385D2 /* ExchangeRateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66972422807CC100C385D2 /* ExchangeRateTests.swift */; };
 		9E66972722807DFF00C385D2 /* UrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66972622807DFF00C385D2 /* UrlSession.swift */; };
 		9E669729228172A000C385D2 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E669728228172A000C385D2 /* FakeResponseData.swift */; };
 		9E66972B22844F1C00C385D2 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66972A22844F1C00C385D2 /* ExchangeRate.swift */; };
+		9E66972D22846A9B00C385D2 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66972C22846A9B00C385D2 /* TranslateService.swift */; };
+		9E66972F228471A900C385D2 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66972E228471A900C385D2 /* WeatherService.swift */; };
+		9E6697312285B5C800C385D2 /* Old_ExchangeRate.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E6697302285B5C800C385D2 /* Old_ExchangeRate.json */; };
+		9E6697332285B92E00C385D2 /* TranslateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6697322285B92E00C385D2 /* TranslateTests.swift */; };
+		9E6697352285B94300C385D2 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6697342285B94300C385D2 /* WeatherTests.swift */; };
+		9E6697372285B96200C385D2 /* Translate.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E6697362285B96200C385D2 /* Translate.json */; };
+		9E6697392285B98500C385D2 /* Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E6697382285B98500C385D2 /* Weather.json */; };
 		9E765FA82262527F005DF98B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E765FA72262527F005DF98B /* AppDelegate.swift */; };
 		9E765FAD2262527F005DF98B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E765FAB2262527F005DF98B /* Main.storyboard */; };
 		9E765FAF22625281005DF98B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E765FAE22625281005DF98B /* Assets.xcassets */; };
@@ -39,11 +46,18 @@
 		9E66971C22804D5300C385D2 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		9E66971E22804D6400C385D2 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		9E6697202280504F00C385D2 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExchangeRateService.swift; path = "../Supporting Files/ExchangeRateService.swift"; sourceTree = "<group>"; };
-		9E66972222807C4500C385D2 /* TestExchangeRate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestExchangeRate.json; sourceTree = "<group>"; };
+		9E66972222807C4500C385D2 /* New_ExchangeRate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = New_ExchangeRate.json; sourceTree = "<group>"; };
 		9E66972422807CC100C385D2 /* ExchangeRateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTests.swift; sourceTree = "<group>"; };
 		9E66972622807DFF00C385D2 /* UrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSession.swift; sourceTree = "<group>"; };
 		9E669728228172A000C385D2 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		9E66972A22844F1C00C385D2 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
+		9E66972C22846A9B00C385D2 /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
+		9E66972E228471A900C385D2 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		9E6697302285B5C800C385D2 /* Old_ExchangeRate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Old_ExchangeRate.json; sourceTree = "<group>"; };
+		9E6697322285B92E00C385D2 /* TranslateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTests.swift; sourceTree = "<group>"; };
+		9E6697342285B94300C385D2 /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
+		9E6697362285B96200C385D2 /* Translate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Translate.json; sourceTree = "<group>"; };
+		9E6697382285B98500C385D2 /* Weather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Weather.json; sourceTree = "<group>"; };
 		9E765FA42262527F005DF98B /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E765FA72262527F005DF98B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E765FAC2262527F005DF98B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,6 +89,8 @@
 		9E669715228003ED00C385D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9E66972E228471A900C385D2 /* WeatherService.swift */,
+				9E66972C22846A9B00C385D2 /* TranslateService.swift */,
 				9E6697202280504F00C385D2 /* ExchangeRateService.swift */,
 				9E6697162280041300C385D2 /* ApiKeys.swift */,
 				9E66972A22844F1C00C385D2 /* ExchangeRate.swift */,
@@ -115,10 +131,15 @@
 			isa = PBXGroup;
 			children = (
 				9E765FBE22625282005DF98B /* Info.plist */,
-				9E66972222807C4500C385D2 /* TestExchangeRate.json */,
-				9E66972422807CC100C385D2 /* ExchangeRateTests.swift */,
 				9E66972622807DFF00C385D2 /* UrlSession.swift */,
 				9E669728228172A000C385D2 /* FakeResponseData.swift */,
+				9E66972422807CC100C385D2 /* ExchangeRateTests.swift */,
+				9E6697322285B92E00C385D2 /* TranslateTests.swift */,
+				9E6697342285B94300C385D2 /* WeatherTests.swift */,
+				9E66972222807C4500C385D2 /* New_ExchangeRate.json */,
+				9E6697302285B5C800C385D2 /* Old_ExchangeRate.json */,
+				9E6697362285B96200C385D2 /* Translate.json */,
+				9E6697382285B98500C385D2 /* Weather.json */,
 			);
 			path = LeBaluchonTests;
 			sourceTree = "<group>";
@@ -244,7 +265,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E66972322807C4500C385D2 /* TestExchangeRate.json in Resources */,
+				9E6697392285B98500C385D2 /* Weather.json in Resources */,
+				9E6697312285B5C800C385D2 /* Old_ExchangeRate.json in Resources */,
+				9E6697372285B96200C385D2 /* Translate.json in Resources */,
+				9E66972322807C4500C385D2 /* New_ExchangeRate.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +300,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E6697212280504F00C385D2 /* ExchangeRateService.swift in Sources */,
+				9E66972F228471A900C385D2 /* WeatherService.swift in Sources */,
 				9E66971F22804D6400C385D2 /* WeatherViewController.swift in Sources */,
 				9E66971D22804D5300C385D2 /* ExchangeViewController.swift in Sources */,
+				9E66972D22846A9B00C385D2 /* TranslateService.swift in Sources */,
 				9E66971B22804D3500C385D2 /* TranslateViewController.swift in Sources */,
 				9E765FA82262527F005DF98B /* AppDelegate.swift in Sources */,
 				9E66972B22844F1C00C385D2 /* ExchangeRate.swift in Sources */,
@@ -289,9 +315,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E6697332285B92E00C385D2 /* TranslateTests.swift in Sources */,
 				9E66972722807DFF00C385D2 /* UrlSession.swift in Sources */,
 				9E66972522807CC100C385D2 /* ExchangeRateTests.swift in Sources */,
 				9E669729228172A000C385D2 /* FakeResponseData.swift in Sources */,
+				9E6697352285B94300C385D2 /* WeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

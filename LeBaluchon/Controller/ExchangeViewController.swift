@@ -32,13 +32,13 @@ class ExchangeViewController: UIViewController {
 
     @IBAction func convertEurToUSD() {
         eurosTextField.resignFirstResponder()
-        guard let rate = exchangeRate.rate, let valueToConvert = Double(eurosTextField.text!) else {
+        guard let valueToConvert = Double(eurosTextField.text!),
+            let result = exchangeRate.getEurToUsd(value: valueToConvert) else {
             presentAlert(titre: "Erreur", message: "Impossible d'effectuer la conversion.")
             return
         }
 
-        let usdValue = valueToConvert*rate
-        resultLabel.text = "\(valueToConvert) EUR => \(String(format: "%.2f", usdValue)) USD"
+        resultLabel.text = "\(valueToConvert) EUR => \(String(format: "%.2f", result)) USD"
     }
 
     private func presentAlert(titre: String, message: String) {

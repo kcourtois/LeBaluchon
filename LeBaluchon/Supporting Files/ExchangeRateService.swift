@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct RateRequest: Decodable {
     let success: Bool?
@@ -40,7 +39,7 @@ class ExchangeRateService {
     func getRate(callback: @escaping (Bool, RateRequest?) -> Void) {
         if needsNewRates() {
             var request = URLRequest(url: fixerUrl)
-            request.httpMethod = "POST"
+            request.httpMethod = "GET"
 
             task?.cancel()
             task = exchangeRateSession.dataTask(with: request) { (data, response, error) in

@@ -12,5 +12,8 @@ class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        WeatherService.shared.getTranslation { (success, jsonObj) in
+
+        }
     }
 }

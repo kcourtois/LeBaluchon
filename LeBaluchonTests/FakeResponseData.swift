@@ -12,20 +12,27 @@ class FakeResponseData {
     // MARK: - Data
     static var exchangeRateCorrectData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "TestExchangeRate", withExtension: "json")!
+        let url = bundle.url(forResource: "New_ExchangeRate", withExtension: "json")!
         // swiftlint:disable:next force_try
         return try! Data(contentsOf: url)
     }
 
-    static let exchangeRateIncorrectData = "erreur".data(using: .utf8)!
+    static var exchangeRateOldData: Data? {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "Old_ExchangeRate", withExtension: "json")!
+        // swiftlint:disable:next force_try
+        return try! Data(contentsOf: url)
+    }
+
+    static let incorrectData = "erreur".data(using: .utf8)!
 
     // MARK: - Response
-    static let exchangeRateResponseOK = HTTPURLResponse(
-        url: URL(string: "http://data.fixer.io/api/")!,
+    static let responseOK = HTTPURLResponse(
+        url: URL(string: "http://www.test.com/api/")!,
         statusCode: 200, httpVersion: nil, headerFields: [:])!
 
-    static let exchangeRateResponseKO = HTTPURLResponse(
-        url: URL(string: "http://data.fixer.io/api/")!,
+    static let responseKO = HTTPURLResponse(
+        url: URL(string: "http://www.test.com/api/")!,
         statusCode: 500, httpVersion: nil, headerFields: [:])!
 
     // MARK: - Error

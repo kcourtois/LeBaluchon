@@ -1,0 +1,42 @@
+{
+    "coord": {
+        "lon": 2.7,
+        "lat": 48.27
+    },
+    "weather": [
+        {
+            "id": 803,
+            "main": "Clouds",
+            "description": "broken clouds",
+            "icon": "04d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 289.5,
+        "pressure": 1010,
+        "humidity": 59,
+        "temp_min": 288.15,
+        "temp_max": 291.15
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 4.1,
+        "deg": 200
+    },
+    "clouds": {
+        "all": 75
+    },
+    "dt": 1557496144,
+    "sys": {
+        "type": 1,
+        "id": 6548,
+        "message": 0.0063,
+        "country": "FR",
+        "sunrise": 1557461818,
+        "sunset": 1557515659
+    },
+    "id": 2990793,
+    "name": "Nemours",
+    "cod": 200
+}

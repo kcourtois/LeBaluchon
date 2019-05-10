@@ -55,7 +55,7 @@ class ExchangeRateTests: XCTestCase {
         let exchangeRateService = ExchangeRateService(
             exchangeRateSession: URLSessionFake(
                 data: FakeResponseData.exchangeRateCorrectData,
-                response: FakeResponseData.exchangeRateResponseKO,
+                response: FakeResponseData.responseKO,
                 error: nil))
 
         // When
@@ -74,8 +74,8 @@ class ExchangeRateTests: XCTestCase {
         // Given
         let exchangeRateService = ExchangeRateService(
             exchangeRateSession: URLSessionFake(
-                data: FakeResponseData.exchangeRateIncorrectData,
-                response: FakeResponseData.exchangeRateResponseOK,
+                data: FakeResponseData.incorrectData,
+                response: FakeResponseData.responseOK,
                 error: nil))
 
         // When
@@ -95,7 +95,7 @@ class ExchangeRateTests: XCTestCase {
         let exchangeRateService = ExchangeRateService(
             exchangeRateSession: URLSessionFake(
                 data: FakeResponseData.exchangeRateCorrectData,
-                response: FakeResponseData.exchangeRateResponseOK,
+                response: FakeResponseData.responseOK,
                 error: nil))
 
         // When
@@ -105,7 +105,7 @@ class ExchangeRateTests: XCTestCase {
             XCTAssertTrue(success)
             XCTAssertNotNil(exchangeRate)
 
-            let USD: Float = 1.118468
+            let USD: Double = 1.118468
 
             XCTAssertEqual(USD, exchangeRate!.rates!.USD)
 
@@ -122,7 +122,7 @@ class ExchangeRateTests: XCTestCase {
         let exchangeRateService = ExchangeRateService(
             exchangeRateSession: URLSessionFake(
                 data: FakeResponseData.exchangeRateCorrectData,
-                response: FakeResponseData.exchangeRateResponseOK,
+                response: FakeResponseData.responseOK,
                 error: nil))
 
         // When
@@ -132,7 +132,32 @@ class ExchangeRateTests: XCTestCase {
             XCTAssertTrue(success)
             XCTAssertNotNil(exchangeRate)
 
-            let USD: Float = 1.118468
+            let USD: Double = 1.118468
+
+            XCTAssertEqual(USD, exchangeRate!.rates!.USD)
+
+            expectation.fulfill()
+        }
+    }
+
+    func testGetExchangeRateShouldPostSuccessCallbackIfUserdefaultsTooOld() {
+        // Given
+        UserDefaults.standard.set(FakeResponseData.exchangeRateOldData,
+                                  forKey: ExchangeRateService.userDefaultsRateKey)
+        let exchangeRateService = ExchangeRateService(
+            exchangeRateSession: URLSessionFake(
+                data: FakeResponseData.exchangeRateCorrectData,
+                response: FakeResponseData.responseOK,
+                error: nil))
+
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        exchangeRateService.getRate { (success, exchangeRate) in
+            // Then
+            XCTAssertTrue(success)
+            XCTAssertNotNil(exchangeRate)
+
+            let USD: Double = 1.118468
 
             XCTAssertEqual(USD, exchangeRate!.rates!.USD)
 

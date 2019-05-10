@@ -15,6 +15,13 @@ class ExchangeRate {
         getExchangeRate()
     }
 
+    func getEurToUsd(value: Double) -> Double? {
+        guard let rate = rate else {
+            return nil
+        }
+        return value*rate
+    }
+
     private func getExchangeRate() {
         ExchangeRateService.shared.getRate { (success, rateReq) in
             if success, let rateReq = rateReq, let rate = rateReq.rates {
