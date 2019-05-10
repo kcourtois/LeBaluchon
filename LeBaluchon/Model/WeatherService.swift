@@ -34,7 +34,7 @@ class WeatherService {
         self.weatherSession = weatherSession
     }
 
-    func getTranslation(callback: @escaping (Bool, WeatherRequest?) -> Void) {
+    func getWeather(callback: @escaping (Bool, WeatherRequest?) -> Void) {
         var request = URLRequest(url: weatherUrlNemours)
         request.httpMethod = "GET"
 

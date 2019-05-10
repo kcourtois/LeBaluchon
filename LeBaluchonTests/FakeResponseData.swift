@@ -24,6 +24,20 @@ class FakeResponseData {
         return try! Data(contentsOf: url)
     }
 
+    static var translateCorrectData: Data? {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "Translate", withExtension: "json")!
+        // swiftlint:disable:next force_try
+        return try! Data(contentsOf: url)
+    }
+
+    static var weatherCorrectData: Data? {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "Weather", withExtension: "json")!
+        // swiftlint:disable:next force_try
+        return try! Data(contentsOf: url)
+    }
+
     static let incorrectData = "erreur".data(using: .utf8)!
 
     // MARK: - Response
