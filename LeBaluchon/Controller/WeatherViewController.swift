@@ -15,8 +15,28 @@ class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        WeatherService.shared.getWeather { (success, jsonObj) in
+        WeatherService.shared.getWeather(city: .nemours, callback: { (success, result) in
+            guard success == true, let res = result, res.weather.indices.contains(0) else {
+                self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de Nemours.")
+                self.weatherNemours.text = "Météo inconnue."
+                return
+            }
+            self.weatherNemours.text = "\(res.main.temp)°C, \(res.weather[0].description)"
 
-        }
+            WeatherService.shared.getWeather(city: .newYork, callback: { (success, result) in
+                guard success == true, let res = result, res.weather.indices.contains(0) else {
+                    self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de New York.")
+                    self.weatherNY.text = "Météo inconnue."
+                    return
+                }
+                self.weatherNY.text = "\(res.main.temp)°C, \(res.weather[0].description)"
+            })
+        })
+    }
+
+    private func presentAlert(titre: String, message: String) {
+        let alertVC = UIAlertController(title: titre, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
 }

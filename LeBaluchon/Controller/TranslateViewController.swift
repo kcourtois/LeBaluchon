@@ -21,6 +21,26 @@ class TranslateViewController: UIViewController {
 
     @IBAction func translateText() {
         userTextView.resignFirstResponder()
+        guard let text = userTextView.text else {
+            self.presentAlert(titre: "Erreur", message: "Pas de texte à traduire !")
+            return
+        }
+        TranslateService.shared.getTranslation(text: text, callback: { (success, result) in
+            guard success == true, let res = result, res.data.translations.indices.contains(0)  else {
+                self.presentAlert(titre: "Erreur",
+                                  message: "Nous n'avons pas réussi à traduire le texte, veuillez réessayer plus tard.")
+                return
+            }
+
+            self.resultTextView.text = res.data.translations[0].translatedText
+            self.resultTextView.textColor = UIColor.black
+        })
+    }
+
+    private func presentAlert(titre: String, message: String) {
+        let alertVC = UIAlertController(title: titre, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
 }
 

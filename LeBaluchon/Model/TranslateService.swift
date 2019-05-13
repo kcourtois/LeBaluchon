@@ -23,8 +23,6 @@ struct Translation: Decodable {
 class TranslateService {
     static var shared = TranslateService()
     private var translateSession = URLSession(configuration: .default)
-    // swiftlint:disable:next line_length
-    private let translateUrl = URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(ApiKeys.googleTranslateKey)&source=fr&target=en&q=bonjour")!
     private var task: URLSessionDataTask?
     private init() {}
 
@@ -32,7 +30,9 @@ class TranslateService {
         self.translateSession = translateSession
     }
 
-    func getTranslation(callback: @escaping (Bool, TranslationRequest?) -> Void) {
+    func getTranslation(text: String, callback: @escaping (Bool, TranslationRequest?) -> Void) {
+        // swiftlint:disable:next line_length
+        let translateUrl = URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(ApiKeys.googleTranslateKey)&source=fr&target=en&q=\(text.replacingOccurrences(of: " ", with: "+"))")!
         var request = URLRequest(url: translateUrl)
         request.httpMethod = "POST"
 
@@ -54,7 +54,6 @@ class TranslateService {
                     return
                 }
 
-                print(responseJSON.data.translations[0].translatedText)
                 callback(true, responseJSON)
             }
         }

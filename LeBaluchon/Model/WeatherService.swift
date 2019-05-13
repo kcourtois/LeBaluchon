@@ -10,6 +10,7 @@ import Foundation
 
 struct WeatherRequest: Decodable {
     let weather: [Weather]
+    let main: Temperature
     let name: String
 }
 
@@ -22,11 +23,23 @@ struct Weather: Decodable {
     //TODO: icon image download https://openweathermap.org/weather-conditions
 }
 
+struct Temperature: Decodable {
+    let temp: Float
+    let pressure: Float
+    let humidity: Float
+    // swiftlint:disable:next identifier_name
+    let temp_min: Float
+    // swiftlint:disable:next identifier_name
+    let temp_max: Float
+}
+
+enum City: String {
+    case newYork = "New+York,US", nemours = "Nemours,FR"
+}
+
 class WeatherService {
     static var shared = WeatherService()
     private var weatherSession = URLSession(configuration: .default)
-    // swiftlint:disable:next line_length
-    private let weatherUrlNemours = URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=\(ApiKeys.openWeatherKey)&q=Nemours,fr&lang=fr&units=metric")!
     private var task: URLSessionDataTask?
     private init() {}
 
@@ -34,8 +47,11 @@ class WeatherService {
         self.weatherSession = weatherSession
     }
 
-    func getWeather(callback: @escaping (Bool, WeatherRequest?) -> Void) {
-        var request = URLRequest(url: weatherUrlNemours)
+    func getWeather(city: City, callback: @escaping (Bool, WeatherRequest?) -> Void) {
+        // swiftlint:disable:next line_length
+        let weatherUrl = URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=\(ApiKeys.openWeatherKey)&q=\(city.rawValue)&lang=fr&units=metric")!
+
+        var request = URLRequest(url: weatherUrl)
         request.httpMethod = "GET"
 
         task?.cancel()
