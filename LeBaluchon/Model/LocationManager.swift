@@ -9,9 +9,14 @@
 import Foundation
 import CoreLocation
 
+struct Coordinates {
+    let latitude: Double
+    let longitude: Double
+}
+
 class LocationManager: NSObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
-    private(set) var coordinates: CLLocationCoordinate2D?
+    private(set) var coordinates: Coordinates?
 
     override init() {
         super.init()
@@ -27,7 +32,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         guard let loc = manager.location else {
             return
         }
-        self.coordinates = loc.coordinate
+        self.coordinates = Coordinates(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
         manager.stopUpdatingLocation()
     }
 }

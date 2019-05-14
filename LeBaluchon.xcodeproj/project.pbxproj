@@ -13,6 +13,7 @@
 		9E4C5A6C228AE8A300BF3620 /* CountryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C5A6B228AE8A300BF3620 /* CountryService.swift */; };
 		9E4C5A6E228AE8C500BF3620 /* GeocodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C5A6D228AE8C500BF3620 /* GeocodeService.swift */; };
 		9E4C5A70228AEE0C00BF3620 /* CountryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C5A6F228AEE0C00BF3620 /* CountryTests.swift */; };
+		9E4C5A72228AFB4C00BF3620 /* GeocodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C5A71228AFB4C00BF3620 /* GeocodeTests.swift */; };
 		9E6697172280041300C385D2 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6697162280041300C385D2 /* ApiKeys.swift */; };
 		9E66971B22804D3500C385D2 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66971A22804D3500C385D2 /* TranslateViewController.swift */; };
 		9E66971D22804D5300C385D2 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E66971C22804D5300C385D2 /* ExchangeViewController.swift */; };
@@ -52,6 +53,7 @@
 		9E4C5A6B228AE8A300BF3620 /* CountryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryService.swift; sourceTree = "<group>"; };
 		9E4C5A6D228AE8C500BF3620 /* GeocodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeService.swift; sourceTree = "<group>"; };
 		9E4C5A6F228AEE0C00BF3620 /* CountryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTests.swift; sourceTree = "<group>"; };
+		9E4C5A71228AFB4C00BF3620 /* GeocodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeTests.swift; sourceTree = "<group>"; };
 		9E6697162280041300C385D2 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		9E66971A22804D3500C385D2 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		9E66971C22804D5300C385D2 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				9E4C5A632289A7EA00BF3620 /* Geocode.json */,
 				9E4C5A69228AE85D00BF3620 /* Country.json */,
 				9E4C5A6F228AEE0C00BF3620 /* CountryTests.swift */,
+				9E4C5A71228AFB4C00BF3620 /* GeocodeTests.swift */,
 			);
 			path = LeBaluchonTests;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				9E66972722807DFF00C385D2 /* UrlSession.swift in Sources */,
 				9E66972522807CC100C385D2 /* ExchangeRateTests.swift in Sources */,
 				9E669729228172A000C385D2 /* FakeResponseData.swift in Sources */,
+				9E4C5A72228AFB4C00BF3620 /* GeocodeTests.swift in Sources */,
 				9E6697352285B94300C385D2 /* WeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
