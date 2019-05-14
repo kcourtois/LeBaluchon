@@ -19,7 +19,7 @@ class WeatherTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        weatherService.getWeather(city: .nemours, callback: { (success, weather) in
+        weatherService.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7), callback: { (success, weather) in
             // Then
             XCTAssertFalse(success)
             XCTAssertNil(weather)
@@ -36,7 +36,7 @@ class WeatherTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        weatherService.getWeather(city: .nemours, callback: { (success, weather) in
+        weatherService.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7), callback: { (success, weather) in
             // Then
             XCTAssertFalse(success)
             XCTAssertNil(weather)
@@ -56,7 +56,7 @@ class WeatherTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        weatherService.getWeather(city: .nemours, callback: { (success, weather) in
+        weatherService.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7), callback: { (success, weather) in
             // Then
             XCTAssertFalse(success)
             XCTAssertNil(weather)
@@ -76,7 +76,7 @@ class WeatherTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        weatherService.getWeather(city: .nemours, callback: { (success, weather) in
+        weatherService.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7), callback: { (success, weather) in
             // Then
             XCTAssertFalse(success)
             XCTAssertNil(weather)
@@ -96,7 +96,7 @@ class WeatherTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        weatherService.getWeather(city: .nemours, callback: { (success, result) in
+        weatherService.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7), callback: { (success, result) in
             // Then
             XCTAssertTrue(success)
             XCTAssertNotNil(result)

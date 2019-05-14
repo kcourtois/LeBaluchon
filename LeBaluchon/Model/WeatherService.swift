@@ -33,10 +33,6 @@ struct Temperature: Decodable {
     let temp_max: Float
 }
 
-enum City: String {
-    case newYork = "New+York,US", nemours = "Nemours,FR"
-}
-
 class WeatherService {
     static var shared = WeatherService()
     private var weatherSession = URLSession(configuration: .default)
@@ -47,9 +43,9 @@ class WeatherService {
         self.weatherSession = weatherSession
     }
 
-    func getWeather(city: City, callback: @escaping (Bool, WeatherRequest?) -> Void) {
+    func getWeather(coord: Coordinates, callback: @escaping (Bool, WeatherRequest?) -> Void) {
         // swiftlint:disable:next line_length
-        let weatherUrl = URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=\(ApiKeys.openWeatherKey)&q=\(city.rawValue)&lang=fr&units=metric")!
+        let weatherUrl = URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=\(ApiKeys.openWeatherKey)&lat=\(coord.latitude)&lon=\(coord.longitude)&lang=fr&units=metric")!
 
         var request = URLRequest(url: weatherUrl)
         request.httpMethod = "GET"

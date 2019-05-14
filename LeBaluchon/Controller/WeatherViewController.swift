@@ -15,7 +15,8 @@ class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        WeatherService.shared.getWeather(city: .nemours, callback: { (success, result) in
+        WeatherService.shared.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7),
+                                         callback: { (success, result) in
             guard success == true, let res = result, res.weather.indices.contains(0) else {
                 self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de Nemours.")
                 self.weatherNemours.text = "Météo inconnue."
@@ -23,7 +24,8 @@ class WeatherViewController: UIViewController {
             }
             self.weatherNemours.text = "\(res.main.temp)°C, \(res.weather[0].description)"
 
-            WeatherService.shared.getWeather(city: .newYork, callback: { (success, result) in
+            WeatherService.shared.getWeather(coord: Coordinates(latitude: 40.7, longitude: -74),
+                                             callback: { (success, result) in
                 guard success == true, let res = result, res.weather.indices.contains(0) else {
                     self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de New York.")
                     self.weatherNY.text = "Météo inconnue."
