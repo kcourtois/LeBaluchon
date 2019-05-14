@@ -38,6 +38,13 @@ class FakeResponseData {
         return try! Data(contentsOf: url)
     }
 
+    static var countryCorrectData: Data? {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "Country", withExtension: "json")!
+        // swiftlint:disable:next force_try
+        return try! Data(contentsOf: url)
+    }
+
     static let incorrectData = "erreur".data(using: .utf8)!
 
     // MARK: - Response

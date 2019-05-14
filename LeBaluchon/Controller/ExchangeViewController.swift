@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ExchangeViewController: UIViewController {
 
@@ -16,10 +17,15 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var eurLabel: UILabel!
 
     var rate: Double?
+    var locationManager = LocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setRateLabel()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        print(locationManager.coordinates ?? "nothing")
     }
 
     func setRateLabel() {
