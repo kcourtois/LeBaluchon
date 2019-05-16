@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct WeatherRequest: Decodable {
+struct WeatherRequest: Codable {
     let weather: [Weather]
     let main: Temperature
     let name: String
 }
 
-struct Weather: Decodable {
+struct Weather: Codable {
     // swiftlint:disable:next identifier_name
     let id: Int
     let main: String
@@ -23,7 +23,7 @@ struct Weather: Decodable {
     //TODO: icon image download https://openweathermap.org/weather-conditions
 }
 
-struct Temperature: Decodable {
+struct Temperature: Codable {
     let temp: Float
     let pressure: Float
     let humidity: Float

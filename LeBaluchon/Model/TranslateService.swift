@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct TranslationRequest: Decodable {
+struct TranslationRequest: Codable {
     let data: TranslationData
 }
 
-struct TranslationData: Decodable {
+struct TranslationData: Codable {
     let translations: [Translation]
 }
 
-struct Translation: Decodable {
+struct Translation: Codable {
     let translatedText: String
 }
 
@@ -30,9 +30,9 @@ class TranslateService {
         self.translateSession = translateSession
     }
 
-    func getTranslation(text: String, callback: @escaping (Bool, TranslationRequest?) -> Void) {
+    func getTranslation(language: String, text: String, callback: @escaping (Bool, TranslationRequest?) -> Void) {
         // swiftlint:disable:next line_length
-        let translateUrl = URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(ApiKeys.googleTranslateKey)&source=fr&target=en&q=\(text.replacingOccurrences(of: " ", with: "+"))")!
+        let translateUrl = URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(ApiKeys.googleTranslateKey)&source=fr&target=\(language)&q=\(text.replacingOccurrences(of: " ", with: "+"))")!
         var request = URLRequest(url: translateUrl)
         request.httpMethod = "POST"
 

@@ -13,6 +13,8 @@ class TranslateViewController: UIViewController {
     @IBOutlet weak var userTextView: UITextView!
     @IBOutlet weak var resultTextView: UITextView!
 
+    let locationManager = LocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         userTextView.textColor = UIColor.lightGray
@@ -25,7 +27,7 @@ class TranslateViewController: UIViewController {
             self.presentAlert(titre: "Erreur", message: "Pas de texte à traduire !")
             return
         }
-        TranslateService.shared.getTranslation(text: text, callback: { (success, result) in
+        TranslateService.shared.getTranslation(language: "en", text: text, callback: { (success, result) in
             guard success == true, let res = result, res.data.translations.indices.contains(0)  else {
                 self.presentAlert(titre: "Erreur",
                                   message: "Nous n'avons pas réussi à traduire le texte, veuillez réessayer plus tard.")

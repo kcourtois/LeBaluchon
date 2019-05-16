@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct GeocodeRequest: Decodable {
+struct GeocodeRequest: Codable {
     // swiftlint:disable:next identifier_name
     let plus_code: PlusCode
 }
 
-struct PlusCode: Decodable {
+struct PlusCode: Codable {
     // swiftlint:disable:next identifier_name
     let compound_code: String
 }

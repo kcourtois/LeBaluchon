@@ -11,7 +11,8 @@ import UIKit
 class WeatherViewController: UIViewController {
 
     @IBOutlet weak var weatherNemours: UILabel!
-    @IBOutlet weak var weatherNY: UILabel!
+    @IBOutlet weak var weatherCurrent: UILabel!
+    @IBOutlet weak var nameCurrent: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +29,10 @@ class WeatherViewController: UIViewController {
                                              callback: { (success, result) in
                 guard success == true, let res = result, res.weather.indices.contains(0) else {
                     self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de New York.")
-                    self.weatherNY.text = "Météo inconnue."
+                    self.weatherCurrent.text = "Météo inconnue."
                     return
                 }
-                self.weatherNY.text = "\(res.main.temp)°C, \(res.weather[0].description)"
+                self.weatherCurrent.text = "\(res.main.temp)°C, \(res.weather[0].description)"
             })
         })
     }

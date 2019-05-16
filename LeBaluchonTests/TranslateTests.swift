@@ -19,7 +19,8 @@ class TranslateTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateService.getTranslation(text: "Bonjour, ceci est un test", callback: { (success, translate) in
+        translateService.getTranslation(language: "en", text: "Bonjour, ceci est un test",
+                                        callback: { (success, translate) in
             // Then
             XCTAssertFalse(success)
             XCTAssertNil(translate)
@@ -36,7 +37,8 @@ class TranslateTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateService.getTranslation(text: "Bonjour, ceci est un test", callback: { (success, translate) in
+        translateService.getTranslation(language: "en", text: "Bonjour, ceci est un test",
+                                        callback: { (success, translate) in
             // Then
             XCTAssertFalse(success)
             XCTAssertNil(translate)
@@ -56,7 +58,8 @@ class TranslateTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateService.getTranslation(text: "Bonjour, ceci est un test", callback: { (success, translate) in
+        translateService.getTranslation(language: "en", text: "Bonjour, ceci est un test",
+                                        callback: { (success, translate) in
             // Then
             XCTAssertFalse(success)
             XCTAssertNil(translate)
@@ -76,7 +79,8 @@ class TranslateTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateService.getTranslation(text: "Bonjour, ceci est un test", callback: { (success, translate) in
+        translateService.getTranslation(language: "en", text: "Bonjour, ceci est un test",
+                                        callback: { (success, translate) in
             // Then
             XCTAssertFalse(success)
             XCTAssertNil(translate)
@@ -96,7 +100,8 @@ class TranslateTests: XCTestCase {
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateService.getTranslation(text: "Bonjour, ceci est un test", callback: { (success, response) in
+        translateService.getTranslation(language: "en", text: "Bonjour, ceci est un test",
+                                        callback: { (success, response) in
             // Then
             XCTAssertTrue(success)
             XCTAssertNotNil(response)

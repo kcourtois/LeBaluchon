@@ -8,18 +8,14 @@
 
 import Foundation
 
-struct RateRequest: Decodable {
+struct RateRequest: Codable {
     let success: Bool?
     let error: ErrorDecodeFixer?
     let date: String?
-    let rates: UsdRate?
+    let rates: [String: Double]
 }
 
-struct UsdRate: Decodable {
-    let USD: Double
-}
-
-struct ErrorDecodeFixer: Decodable {
+struct ErrorDecodeFixer: Codable {
     let code: Int
     let type: String
 }
@@ -28,7 +24,7 @@ class ExchangeRateService {
     static var shared = ExchangeRateService()
     static let userDefaultsRateKey = "RateRequest"
     private var exchangeRateSession = URLSession(configuration: .default)
-    private let fixerUrl = URL(string: "http://data.fixer.io/api/latest?access_key=\(ApiKeys.fixerKey)&symbols=USD")!
+    private let fixerUrl = URL(string: "http://data.fixer.io/api/latest?access_key=\(ApiKeys.fixerKey)")!
     private var task: URLSessionDataTask?
     private init() {}
 

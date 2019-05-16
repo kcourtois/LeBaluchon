@@ -97,7 +97,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Weather" image="sun@25" selectedImage="sun@25" id="XBN-vv-mop"/>
                     <connections>
-                        <outlet property="weatherNY" destination="i7u-pe-5rF" id="Her-ss-3BV"/>
+                        <outlet property="nameCurrent" destination="1ju-FQ-7ff" id="Yks-jV-DVY"/>
+                        <outlet property="weatherCurrent" destination="i7u-pe-5rF" id="Ghs-qq-Zr0"/>
                         <outlet property="weatherNemours" destination="NsZ-36-8CD" id="PS3-zI-Nx1"/>
                     </connections>
                 </viewController>
@@ -240,8 +241,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BwU-yz-Yk5">
                                                 <rect key="frame" x="0.0" y="227" width="375" height="72"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conversion USD/EUR" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53P-jQ-m68">
-                                                        <rect key="frame" x="66.5" y="8" width="242.5" height="31.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conversion depuis l'euros" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53P-jQ-m68">
+                                                        <rect key="frame" x="44" y="8" width="287" height="31.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -433,6 +434,7 @@
                         <outlet property="eurosTextField" destination="mge-Za-oE1" id="nlF-YM-f7l"/>
                         <outlet property="exchangeRateLabel" destination="tro-LH-yxy" id="z0y-cQ-V30"/>
                         <outlet property="resultLabel" destination="HlE-6V-yc7" id="G3F-3d-tSI"/>
+                        <outlet property="symbolCurrency" destination="S6j-Ni-eMg" id="fq5-Gi-c9H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="an9-eK-Vn9" userLabel="First Responder" sceneMemberID="firstResponder"/>

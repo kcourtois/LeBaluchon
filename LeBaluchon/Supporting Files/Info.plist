@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Permission necessaire pour récupérer votre monnaie locale.</string>
+	<string>Permission necessaire pour récupérer la langue, la monnaie utilisée ainsi que la météo à votre position.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

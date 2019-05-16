@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct CountryRequest: Decodable {
+struct CountryRequest: Codable {
     let currencies: [Currency]
     let languages: [Language]
 }
 
-struct Currency: Decodable {
+struct Currency: Codable {
     let code: String
     let name: String
     let symbol: String
 }
 
-struct Language: Decodable {
+struct Language: Codable {
     // swiftlint:disable:next identifier_name
     let iso639_1: String
     // swiftlint:disable:next identifier_name

@@ -107,7 +107,7 @@ class ExchangeRateTests: XCTestCase {
 
             let USD: Double = 1.118468
 
-            XCTAssertEqual(USD, exchangeRate!.rates!.USD)
+            XCTAssertEqual(USD, exchangeRate!.rates["USD"])
 
             expectation.fulfill()
         }
@@ -134,7 +134,7 @@ class ExchangeRateTests: XCTestCase {
 
             let USD: Double = 1.118468
 
-            XCTAssertEqual(USD, exchangeRate!.rates!.USD)
+            XCTAssertEqual(USD, exchangeRate!.rates["USD"])
 
             expectation.fulfill()
         }
@@ -159,7 +159,7 @@ class ExchangeRateTests: XCTestCase {
 
             let USD: Double = 1.118468
 
-            XCTAssertEqual(USD, exchangeRate!.rates!.USD)
+            XCTAssertEqual(USD, exchangeRate!.rates["USD"])
 
             expectation.fulfill()
         }

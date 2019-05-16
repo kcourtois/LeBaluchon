@@ -14,29 +14,48 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var eurosTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var eurLabel: UILabel!
+    @IBOutlet weak var symbolCurrency: UILabel!
 
     var rate: Double?
-    var locationManager = LocationManager()
+    let locationManager = LocationManager()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
         setRateLabel()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        print(locationManager.coordinates ?? "nothing")
-    }
-
     func setRateLabel() {
-        ExchangeRateService.shared.getRate { (success, rateReq) in
-            if success, let rateReq = rateReq, let rate = rateReq.rates {
-                self.rate = rate.USD
-                self.exchangeRateLabel.text = "Taux actuel: \(rate.USD)"
-            } else {
+        ExchangeRateService.shared.getRate { (success, result) in
+            guard success, let exRes = result else {
                 self.rate = nil
-                self.presentAlert(titre: "Erreur", message: "Le taux de change EUR/USD n'a pas pu être téléchargé.")
+                self.presentAlert(titre: "Erreur", message: "Le taux de change n'a pas pu être téléchargé.")
                 self.exchangeRateLabel.text = "Inconnu"
+                return
             }
+
+            guard let coord = self.locationManager.coordinates else {
+                self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+                return
+            }
+
+            GeocodeService.shared.getGeocode(coord: coord, callback: { (success, result) in
+
+                guard success, let geoRes = result,
+                    let country = geoRes.plus_code.compound_code.split(separator: " ").last else {
+                        self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+                        return
+                }
+
+                CountryService.shared.getCountryInfo(country: String(country), callback: { (success, result) in
+                    guard success, let countryRes = result, let rate = exRes.rates[countryRes.currencies[0].code] else {
+                        self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+                        return
+                    }
+
+                    self.rate = rate
+                    self.exchangeRateLabel.text = "Taux actuel: \(rate)"
+                    self.symbolCurrency.text = countryRes.currencies[0].symbol
+                })
+            })
         }
     }
 
