@@ -28,6 +28,7 @@ class ExchangeRateService {
     private var task: URLSessionDataTask?
     private init() {}
 
+    //Init used for tests
     init(exchangeRateSession: URLSession) {
         self.exchangeRateSession = exchangeRateSession
     }

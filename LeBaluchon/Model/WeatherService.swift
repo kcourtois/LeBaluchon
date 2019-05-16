@@ -39,6 +39,7 @@ class WeatherService {
     private var task: URLSessionDataTask?
     private init() {}
 
+    //Init used for tests
     init(weatherSession: URLSession) {
         self.weatherSession = weatherSession
     }

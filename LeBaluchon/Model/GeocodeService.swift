@@ -24,6 +24,7 @@ class GeocodeService {
     private var task: URLSessionDataTask?
     private init() {}
 
+    //Init used for tests
     init(geocodeSession: URLSession) {
         self.geocodeSession = geocodeSession
     }

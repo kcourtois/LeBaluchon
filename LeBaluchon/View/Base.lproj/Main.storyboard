@@ -98,6 +98,7 @@
                     <tabBarItem key="tabBarItem" title="Weather" image="sun@25" selectedImage="sun@25" id="XBN-vv-mop"/>
                     <connections>
                         <outlet property="nameCurrent" destination="1ju-FQ-7ff" id="Yks-jV-DVY"/>
+                        <outlet property="titleCurrent" destination="1ju-FQ-7ff" id="9gG-lu-CPh"/>
                         <outlet property="weatherCurrent" destination="i7u-pe-5rF" id="Ghs-qq-Zr0"/>
                         <outlet property="weatherNemours" destination="NsZ-36-8CD" id="PS3-zI-Nx1"/>
                     </connections>
@@ -121,7 +122,7 @@
                                     <constraint firstAttribute="height" constant="45" id="wUP-co-6Bl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <state key="normal" title=" Traduire en Anglais ! ">
+                                <state key="normal" title=" Traduire le texte ! ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -136,8 +137,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQE-M2-XjD">
                                 <rect key="frame" x="0.0" y="20" width="375" height="72"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traduction FR/EN" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Haa-pl-Zvd">
-                                        <rect key="frame" x="89.5" y="20.5" width="196" height="31"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traduction" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Haa-pl-Zvd">
+                                        <rect key="frame" x="128.5" y="20" width="118.5" height="32"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -241,8 +242,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BwU-yz-Yk5">
                                                 <rect key="frame" x="0.0" y="227" width="375" height="72"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conversion depuis l'euros" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53P-jQ-m68">
-                                                        <rect key="frame" x="44" y="8" width="287" height="31.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conversion d'Euros" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53P-jQ-m68">
+                                                        <rect key="frame" x="79" y="8" width="217" height="31.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>

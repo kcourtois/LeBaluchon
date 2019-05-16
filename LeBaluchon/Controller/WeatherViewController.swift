@@ -12,10 +12,12 @@ class WeatherViewController: UIViewController {
 
     @IBOutlet weak var weatherNemours: UILabel!
     @IBOutlet weak var weatherCurrent: UILabel!
+    @IBOutlet weak var titleCurrent: UILabel!
     @IBOutlet weak var nameCurrent: UILabel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    let locationManager = LocationManager()
+
+    override func viewDidAppear(_ animated: Bool) {
         WeatherService.shared.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7),
                                          callback: { (success, result) in
             guard success == true, let res = result, res.weather.indices.contains(0) else {
@@ -25,13 +27,20 @@ class WeatherViewController: UIViewController {
             }
             self.weatherNemours.text = "\(res.main.temp)°C, \(res.weather[0].description)"
 
-            WeatherService.shared.getWeather(coord: Coordinates(latitude: 40.7, longitude: -74),
+            guard let coord = self.locationManager.coordinates else {
+                self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+                return
+            }
+
+            WeatherService.shared.getWeather(coord: coord,
                                              callback: { (success, result) in
                 guard success == true, let res = result, res.weather.indices.contains(0) else {
-                    self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de New York.")
+                    self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de à votre position.")
                     self.weatherCurrent.text = "Météo inconnue."
                     return
                 }
+
+                self.titleCurrent.text = "\(res.name)"
                 self.weatherCurrent.text = "\(res.main.temp)°C, \(res.weather[0].description)"
             })
         })

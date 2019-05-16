@@ -34,6 +34,7 @@ class CountryService {
     private var task: URLSessionDataTask?
     private init() {}
 
+    //Init used for tests
     init(countrySession: URLSession) {
         self.countrySession = countrySession
     }

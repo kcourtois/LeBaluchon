@@ -27,15 +27,38 @@ class TranslateViewController: UIViewController {
             self.presentAlert(titre: "Erreur", message: "Pas de texte à traduire !")
             return
         }
-        TranslateService.shared.getTranslation(language: "en", text: text, callback: { (success, result) in
-            guard success == true, let res = result, res.data.translations.indices.contains(0)  else {
-                self.presentAlert(titre: "Erreur",
-                                  message: "Nous n'avons pas réussi à traduire le texte, veuillez réessayer plus tard.")
-                return
+
+        guard let coord = self.locationManager.coordinates else {
+            self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+            return
+        }
+
+        GeocodeService.shared.getGeocode(coord: coord, callback: { (success, result) in
+
+            guard success, let geoRes = result,
+                let country = geoRes.plus_code.compound_code.split(separator: " ").last else {
+                    self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+                    return
             }
 
-            self.resultTextView.text = res.data.translations[0].translatedText
-            self.resultTextView.textColor = UIColor.black
+            CountryService.shared.getCountryInfo(country: String(country), callback: { (success, result) in
+                guard success, let countryRes = result, countryRes.languages.indices.contains(0) else {
+                    self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+                    return
+                }
+
+                TranslateService.shared.getTranslation(language: countryRes.languages[0].iso639_1,
+                                                       text: text, callback: { (success, result) in
+                    guard success == true, let res = result, res.data.translations.indices.contains(0)  else {
+                        self.presentAlert(titre: "Erreur",
+                                          message: "Nous n'avons pas réussi à traduire le texte.")
+                        return
+                    }
+
+                    self.resultTextView.text = res.data.translations[0].translatedText
+                    self.resultTextView.textColor = UIColor.black
+                })
+            })
         })
     }
 

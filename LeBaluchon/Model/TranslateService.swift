@@ -26,14 +26,31 @@ class TranslateService {
     private var task: URLSessionDataTask?
     private init() {}
 
+    //Init used for tests
     init(translateSession: URLSession) {
         self.translateSession = translateSession
     }
 
     func getTranslation(language: String, text: String, callback: @escaping (Bool, TranslationRequest?) -> Void) {
-        // swiftlint:disable:next line_length
-        let translateUrl = URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(ApiKeys.googleTranslateKey)&source=fr&target=\(language)&q=\(text.replacingOccurrences(of: " ", with: "+"))")!
-        var request = URLRequest(url: translateUrl)
+
+        let components = URLComponents(string: "https://translation.googleapis.com/language/translate/v2")
+
+        guard var comp = components else {
+            callback(false, nil)
+            return
+        }
+
+        comp.queryItems = [URLQueryItem(name: "key", value: ApiKeys.googleTranslateKey),
+                                 URLQueryItem(name: "source", value: "fr"),
+                                 URLQueryItem(name: "target", value: language),
+                                 URLQueryItem(name: "q", value: text)]
+
+        guard let url = comp.url else {
+            callback(false, nil)
+            return
+        }
+
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
         task?.cancel()
