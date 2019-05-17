@@ -20,7 +20,6 @@ struct Weather: Codable {
     let main: String
     let description: String
     let icon: String
-    //TODO: icon image download https://openweathermap.org/weather-conditions
 }
 
 struct Temperature: Codable {
@@ -69,7 +68,6 @@ class WeatherService {
                     return
                 }
 
-                print(responseJSON)
                 callback(true, responseJSON)
             }
         }

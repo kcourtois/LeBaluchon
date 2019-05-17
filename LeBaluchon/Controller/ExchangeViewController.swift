@@ -16,8 +16,8 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var eurLabel: UILabel!
     @IBOutlet weak var symbolCurrency: UILabel!
 
-    var rate: Double?
-    let locationManager = LocationManager()
+    var rates: RateRequest?
+    var code: String?
 
     override func viewDidAppear(_ animated: Bool) {
         setRateLabel()
@@ -26,42 +26,57 @@ class ExchangeViewController: UIViewController {
     func setRateLabel() {
         ExchangeRateService.shared.getRate { (success, result) in
             guard success, let exRes = result else {
-                self.rate = nil
+                self.rates = nil
                 self.presentAlert(titre: "Erreur", message: "Le taux de change n'a pas pu être téléchargé.")
                 self.exchangeRateLabel.text = "Inconnu"
                 return
             }
+            self.rates = exRes
+            self.geocodeService()
+        }
+    }
 
-            guard let coord = self.locationManager.coordinates else {
+    private func geocodeService() {
+        guard let coord = LocationManager.shared.coordinates else {
+            self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+            return
+        }
+        GeocodeService.shared.getGeocode(coord: coord, callback: { (success, result) in
+            guard success, let geoRes = result,
+                let country = geoRes.plus_code.compound_code.split(separator: " ").last else {
+                    self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+                    return
+            }
+            self.countryService(country: String(country))
+        })
+    }
+
+    private func countryService(country: String) {
+        CountryService.shared.getCountryInfo(country: country, callback: { (success, result) in
+            guard success, let countryRes = result else {
                 self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
                 return
             }
 
-            GeocodeService.shared.getGeocode(coord: coord, callback: { (success, result) in
+            self.code = countryRes.currencies[0].code
 
-                guard success, let geoRes = result,
-                    let country = geoRes.plus_code.compound_code.split(separator: " ").last else {
-                        self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
-                        return
-                }
+            guard let rates = self.rates, let code = self.code, let rate = rates.rates[code] else {
+                self.presentAlert(titre: "Erreur", message: "Le taux de change n'a pas pu être téléchargé.")
+                return
+            }
 
-                CountryService.shared.getCountryInfo(country: String(country), callback: { (success, result) in
-                    guard success, let countryRes = result, let rate = exRes.rates[countryRes.currencies[0].code] else {
-                        self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
-                        return
-                    }
-
-                    self.rate = rate
-                    self.exchangeRateLabel.text = "Taux actuel: \(rate)"
-                    self.symbolCurrency.text = countryRes.currencies[0].symbol
-                })
-            })
-        }
+            self.exchangeRateLabel.text = "Taux actuel: \(rate)"
+            self.symbolCurrency.text = countryRes.currencies[0].symbol
+        })
     }
 
     @IBAction func convertEurToUSD() {
         eurosTextField.resignFirstResponder()
-        guard let txt = eurosTextField.text, let valueToConvert = Double(txt), let rate = rate else {
+        guard let rates = self.rates, let code = self.code, let rate = rates.rates[code] else {
+            presentAlert(titre: "Erreur", message: "Le taux de change n'a pas pu être téléchargé.")
+            return
+        }
+        guard let txt = eurosTextField.text, let valueToConvert = Double(txt) else {
             presentAlert(titre: "Erreur", message: "Impossible d'effectuer la conversion.")
             return
         }

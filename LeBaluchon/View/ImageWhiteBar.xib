@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageWhiteBar" customModule="LeBaluchon" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="2kf-cS-Vhe" id="QjS-kG-ipN"/>
+                <outlet property="subTitleLabel" destination="BAY-7C-WbS" id="XTW-lN-2d7"/>
+                <outlet property="titleLabel" destination="ees-or-7kF" id="8IV-hJ-YwU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="407"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2kf-cS-Vhe">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="407"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIZ-Ie-Uea">
+                    <rect key="frame" x="0.0" y="335" width="414" height="72"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ees-or-7kF">
+                            <rect key="frame" x="183" y="8" width="48.5" height="32"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAY-7C-WbS">
+                            <rect key="frame" x="177.5" y="43" width="59" height="21"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="72" id="3GY-Rx-iUE"/>
+                        <constraint firstItem="ees-or-7kF" firstAttribute="centerX" secondItem="iIZ-Ie-Uea" secondAttribute="centerX" id="4Za-KN-6qN"/>
+                        <constraint firstItem="BAY-7C-WbS" firstAttribute="centerX" secondItem="iIZ-Ie-Uea" secondAttribute="centerX" id="Ggf-rK-jNk"/>
+                        <constraint firstItem="ees-or-7kF" firstAttribute="top" secondItem="iIZ-Ie-Uea" secondAttribute="top" constant="8" id="IpP-nq-IhZ"/>
+                        <constraint firstAttribute="bottom" secondItem="BAY-7C-WbS" secondAttribute="bottom" constant="8" id="NNT-Ro-AcU"/>
+                        <constraint firstAttribute="height" constant="72" id="vKh-J1-YWM"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iIZ-Ie-Uea" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0Fw-Fg-mvj"/>
+                <constraint firstAttribute="trailing" secondItem="2kf-cS-Vhe" secondAttribute="trailing" id="B6J-GZ-POO"/>
+                <constraint firstItem="2kf-cS-Vhe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BCu-s5-4Or"/>
+                <constraint firstAttribute="trailing" secondItem="iIZ-Ie-Uea" secondAttribute="trailing" id="Pg8-eo-fuU"/>
+                <constraint firstAttribute="bottom" secondItem="iIZ-Ie-Uea" secondAttribute="bottom" id="RSI-nv-S33"/>
+                <constraint firstAttribute="bottom" secondItem="2kf-cS-Vhe" secondAttribute="bottom" id="f8I-9c-W5O"/>
+                <constraint firstItem="2kf-cS-Vhe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qAM-CG-d9w"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="47.826086956521742" y="199.21875"/>
+        </view>
+    </objects>
+</document>

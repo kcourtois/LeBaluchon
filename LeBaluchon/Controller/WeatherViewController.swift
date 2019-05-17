@@ -15,8 +15,6 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var titleCurrent: UILabel!
     @IBOutlet weak var nameCurrent: UILabel!
 
-    let locationManager = LocationManager()
-
     override func viewDidAppear(_ animated: Bool) {
         WeatherService.shared.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7),
                                          callback: { (success, result) in
@@ -27,7 +25,7 @@ class WeatherViewController: UIViewController {
             }
             self.weatherNemours.text = "\(res.main.temp)°C, \(res.weather[0].description)"
 
-            guard let coord = self.locationManager.coordinates else {
+            guard let coord = LocationManager.shared.coordinates else {
                 self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
                 return
             }

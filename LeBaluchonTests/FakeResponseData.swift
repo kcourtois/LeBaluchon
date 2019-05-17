@@ -12,42 +12,42 @@ class FakeResponseData {
     // MARK: - Data
     static var exchangeRateCorrectData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "New_ExchangeRate", withExtension: "json")!
+        let url = bundle.url(forResource: "JSON/New_ExchangeRate", withExtension: "json")!
         // swiftlint:disable:next force_try
         return try! Data(contentsOf: url)
     }
 
     static var exchangeRateOldData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Old_ExchangeRate", withExtension: "json")!
+        let url = bundle.url(forResource: "JSON/Old_ExchangeRate", withExtension: "json")!
         // swiftlint:disable:next force_try
         return try! Data(contentsOf: url)
     }
 
     static var translateCorrectData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Translate", withExtension: "json")!
+        let url = bundle.url(forResource: "JSON/Translate", withExtension: "json")!
         // swiftlint:disable:next force_try
         return try! Data(contentsOf: url)
     }
 
     static var weatherCorrectData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Weather", withExtension: "json")!
+        let url = bundle.url(forResource: "JSON/Weather", withExtension: "json")!
         // swiftlint:disable:next force_try
         return try! Data(contentsOf: url)
     }
 
     static var countryCorrectData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Country", withExtension: "json")!
+        let url = bundle.url(forResource: "JSON/Country", withExtension: "json")!
         // swiftlint:disable:next force_try
         return try! Data(contentsOf: url)
     }
 
     static var geocodeCorrectData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Geocode", withExtension: "json")!
+        let url = bundle.url(forResource: "JSON/Geocode", withExtension: "json")!
         // swiftlint:disable:next force_try
         return try! Data(contentsOf: url)
     }

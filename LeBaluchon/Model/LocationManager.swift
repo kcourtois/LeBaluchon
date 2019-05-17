@@ -15,10 +15,11 @@ struct Coordinates {
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
+    static var shared = LocationManager()
     private var locationManager = CLLocationManager()
     private(set) var coordinates: Coordinates?
 
-    override init() {
+    private override init() {
         super.init()
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {

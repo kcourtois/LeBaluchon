@@ -283,7 +283,7 @@
                                                 <rect key="frame" x="25" y="77" width="325" height="45"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                                <state key="normal" title=" Convertir en Dollars ">
+                                                <state key="normal" title=" Convertir">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
