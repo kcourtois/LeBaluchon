@@ -29,7 +29,7 @@ class ImageWhiteBar: UIView {
     }
 
     //Get class name and turn it to a string
-    private func selfName()->String {
+    private func selfName() -> String {
         let thisType = type(of: self)
         return String(describing: thisType)
     }

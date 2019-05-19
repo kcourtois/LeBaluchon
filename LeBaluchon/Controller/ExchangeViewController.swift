@@ -10,17 +10,19 @@ import UIKit
 
 class ExchangeViewController: UIViewController {
 
-    @IBOutlet weak var exchangeRateLabel: UILabel!
     @IBOutlet weak var eurosTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var eurLabel: UILabel!
     @IBOutlet weak var symbolCurrency: UILabel!
+    @IBOutlet weak var imageWhiteBar: ImageWhiteBar!
 
     var rates: RateRequest?
     var code: String?
 
     override func viewDidAppear(_ animated: Bool) {
         setRateLabel()
+        imageWhiteBar.titleLabel.text = "Conversion d'Euros"
+        imageWhiteBar.imageView.image = #imageLiteral(resourceName: "bourse")
     }
 
     func setRateLabel() {
@@ -28,7 +30,7 @@ class ExchangeViewController: UIViewController {
             guard success, let exRes = result else {
                 self.rates = nil
                 self.presentAlert(titre: "Erreur", message: "Le taux de change n'a pas pu être téléchargé.")
-                self.exchangeRateLabel.text = "Inconnu"
+                self.imageWhiteBar.subTitleLabel.text = "Inconnu"
                 return
             }
             self.rates = exRes
@@ -65,7 +67,7 @@ class ExchangeViewController: UIViewController {
                 return
             }
 
-            self.exchangeRateLabel.text = "Taux actuel: \(rate)"
+            self.imageWhiteBar.subTitleLabel.text = "Taux actuel: \(rate)"
             self.symbolCurrency.text = countryRes.currencies[0].symbol
         })
     }

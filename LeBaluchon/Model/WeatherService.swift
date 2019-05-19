@@ -8,6 +8,12 @@
 
 import Foundation
 
+struct WeatherResult {
+    let city: String
+    let weather: String
+    let image: Data
+}
+
 struct WeatherRequest: Codable {
     let weather: [Weather]
     let main: Temperature
@@ -35,19 +41,37 @@ struct Temperature: Codable {
 class WeatherService {
     static var shared = WeatherService()
     private var weatherSession = URLSession(configuration: .default)
+    private var imageSession = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
     private init() {}
 
     //Init used for tests
-    init(weatherSession: URLSession) {
+    init(weatherSession: URLSession, imageSession: URLSession) {
         self.weatherSession = weatherSession
+        self.imageSession = imageSession
     }
 
-    func getWeather(coord: Coordinates, callback: @escaping (Bool, WeatherRequest?) -> Void) {
-        // swiftlint:disable:next line_length
-        let weatherUrl = URL(string: "http://api.openweathermap.org/data/2.5/weather?APPID=\(ApiKeys.openWeatherKey)&lat=\(coord.latitude)&lon=\(coord.longitude)&lang=fr&units=metric")!
+    func getWeather(coord: Coordinates, callback: @escaping (Bool, WeatherResult?) -> Void) {
 
-        var request = URLRequest(url: weatherUrl)
+        let components = URLComponents(string: "http://api.openweathermap.org/data/2.5/weather")
+
+        guard var comp = components else {
+            callback(false, nil)
+            return
+        }
+
+        comp.queryItems = [URLQueryItem(name: "APPID", value: ApiKeys.openWeatherKey),
+                           URLQueryItem(name: "lat", value: "\(coord.latitude)"),
+                           URLQueryItem(name: "lon", value: "\(coord.longitude)"),
+                           URLQueryItem(name: "lang", value: "fr"),
+                           URLQueryItem(name: "units", value: "metric")]
+
+        guard let url = comp.url else {
+            callback(false, nil)
+            return
+        }
+
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
         task?.cancel()
@@ -68,7 +92,46 @@ class WeatherService {
                     return
                 }
 
-                callback(true, responseJSON)
+                guard responseJSON.weather.indices.contains(0) else {
+                    callback(false, nil)
+                    return
+                }
+
+                self.getImage(weather: responseJSON.weather[0].main, completionHandler: { (data) in
+                    guard let data = data else {
+                        callback(false, nil)
+                        return
+                    }
+
+                    let weatherResult = WeatherResult(city: responseJSON.name,
+                                                      weather: "\(responseJSON.main.temp)°C, " +
+                                                      "\(responseJSON.weather[0].description)",
+                                                      image: data)
+
+                    callback(true, weatherResult)
+                })
+            }
+        }
+        task?.resume()
+    }
+
+    private func getImage(weather: String, completionHandler: @escaping ((Data?) -> Void)) {
+        let pictureUrl = URL(string: "https://source.unsplash.com/500x400?\(weather)")!
+
+        task?.cancel()
+        task = imageSession.dataTask(with: pictureUrl) { (data, response, error) in
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    completionHandler(nil)
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    completionHandler(nil)
+                    return
+                }
+
+                completionHandler(data)
             }
         }
         task?.resume()

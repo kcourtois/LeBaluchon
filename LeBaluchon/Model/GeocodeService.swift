@@ -30,9 +30,24 @@ class GeocodeService {
     }
 
     func getGeocode(coord: Coordinates, callback: @escaping (Bool, GeocodeRequest?) -> Void) {
-        // swiftlint:disable:next line_length
-        let geocodeUrl = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(coord.latitude),\(coord.longitude)&key=\(ApiKeys.googleTranslateKey)&result_type=country")!
-        var request = URLRequest(url: geocodeUrl)
+
+        let components = URLComponents(string: "https://maps.googleapis.com/maps/api/geocode/json")
+
+        guard var comp = components else {
+            callback(false, nil)
+            return
+        }
+
+        comp.queryItems = [URLQueryItem(name: "key", value: ApiKeys.googleTranslateKey),
+                           URLQueryItem(name: "latlng", value: "\(coord.latitude),\(coord.longitude)"),
+                           URLQueryItem(name: "result_type", value: "country")]
+
+        guard let url = comp.url else {
+            callback(false, nil)
+            return
+        }
+
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
         task?.cancel()

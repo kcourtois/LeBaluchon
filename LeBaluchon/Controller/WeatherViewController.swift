@@ -10,37 +10,34 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
-    @IBOutlet weak var weatherNemours: UILabel!
-    @IBOutlet weak var weatherCurrent: UILabel!
-    @IBOutlet weak var titleCurrent: UILabel!
-    @IBOutlet weak var nameCurrent: UILabel!
+    @IBOutlet weak var localImageBar: ImageWhiteBar!
+    @IBOutlet weak var currentImageBar: ImageWhiteBar!
 
     override func viewDidAppear(_ animated: Bool) {
-        WeatherService.shared.getWeather(coord: Coordinates(latitude: 48.27, longitude: 2.7),
-                                         callback: { (success, result) in
-            guard success == true, let res = result, res.weather.indices.contains(0) else {
-                self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de Nemours.")
-                self.weatherNemours.text = "Météo inconnue."
-                return
-            }
-            self.weatherNemours.text = "\(res.main.temp)°C, \(res.weather[0].description)"
-
+        weatherService(coordinates: Coordinates(latitude: 48.27, longitude: 2.7), imageBar: localImageBar, completion: {
             guard let coord = LocationManager.shared.coordinates else {
-                self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
+                self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de à votre position.")
+                self.currentImageBar.titleLabel.text = "Inconnu"
+                self.currentImageBar.subTitleLabel.text = "Météo inconnue."
                 return
             }
+            self.weatherService(coordinates: coord, imageBar: self.currentImageBar, completion: {})
+        })
+    }
 
-            WeatherService.shared.getWeather(coord: coord,
-                                             callback: { (success, result) in
-                guard success == true, let res = result, res.weather.indices.contains(0) else {
-                    self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de à votre position.")
-                    self.weatherCurrent.text = "Météo inconnue."
-                    return
-                }
-
-                self.titleCurrent.text = "\(res.name)"
-                self.weatherCurrent.text = "\(res.main.temp)°C, \(res.weather[0].description)"
-            })
+    private func weatherService(coordinates: Coordinates, imageBar: ImageWhiteBar, completion: @escaping () -> Void) {
+        WeatherService.shared.getWeather(coord: coordinates,
+                                         callback: { (success, result) in
+            guard success == true, let res = result else {
+                self.presentAlert(titre: "Erreur", message: "Impossible de récupérer la météo de à votre position.")
+                imageBar.titleLabel.text = "Inconnu"
+                imageBar.subTitleLabel.text = "Météo inconnue."
+                return
+            }
+            imageBar.titleLabel.text = "\(res.city)"
+            imageBar.subTitleLabel.text = "\(res.weather)"
+            imageBar.imageView.image = UIImage(data: res.image)
+            completion()
         })
     }
 
