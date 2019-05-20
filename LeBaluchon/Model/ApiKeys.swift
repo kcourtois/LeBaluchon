@@ -9,7 +9,7 @@
 import Foundation
 
 class ApiKeys {
-    static let fixerKey: String = "55109e65d35de13bace3f8c5f0197fe6"
-    static let googleTranslateKey: String = "AIzaSyBgwZKst7A-OkBx1uskllQ-6RE-IyTSzf8"
-    static let openWeatherKey: String = "d7dd4dd708fae6201d133f948ab3ea38"
+    static let fixerKey: String = "721e40485b104feea81301efa76291ab"
+    static let googleTranslateKey: String = "AIzaSyBJzbScnXw5sh19IrEsqilPmG9xYDN9VDE"
+    static let openWeatherKey: String = "4dc520030b30ea1596757d296c0ab4fb"
 }
