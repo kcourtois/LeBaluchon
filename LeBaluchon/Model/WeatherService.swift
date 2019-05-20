@@ -51,6 +51,7 @@ class WeatherService {
         self.imageSession = imageSession
     }
 
+    //Request to OpenWeather API, to retrieve weather at given coordinates
     func getWeather(coord: Coordinates, callback: @escaping (Bool, WeatherResult?) -> Void) {
 
         let components = URLComponents(string: "http://api.openweathermap.org/data/2.5/weather")
@@ -115,6 +116,7 @@ class WeatherService {
         task?.resume()
     }
 
+    //Request to Unsplash API, to get a random image for a weather keyword
     private func getImage(weather: String, completionHandler: @escaping ((Data?) -> Void)) {
         let pictureUrl = URL(string: "https://source.unsplash.com/500x400?\(weather)")!
 

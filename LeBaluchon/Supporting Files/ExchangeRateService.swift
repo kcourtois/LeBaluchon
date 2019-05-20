@@ -33,6 +33,7 @@ class ExchangeRateService {
         self.exchangeRateSession = exchangeRateSession
     }
 
+    //Request to Fixer API, to retrieve exchange rates
     func getRate(callback: @escaping (Bool, RateRequest?) -> Void) {
         if needsNewRates() {
             var request = URLRequest(url: fixerUrl)

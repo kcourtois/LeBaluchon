@@ -39,6 +39,7 @@ class CountryService {
         self.countrySession = countrySession
     }
 
+    //Request to Restcountries API, to retrieve currency and language for a country
     func getCountryInfo(country: String, callback: @escaping (Bool, CountryRequest?) -> Void) {
         let countryUrl = URL(string: "https://restcountries.eu/rest/v2/name/\(country)")!
         var request = URLRequest(url: countryUrl)

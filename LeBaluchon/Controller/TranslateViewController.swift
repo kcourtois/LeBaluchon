@@ -21,16 +21,17 @@ class TranslateViewController: UIViewController {
 
     @IBAction func translateText() {
         userTextView.resignFirstResponder()
-
         getTranslation()
     }
 
+    //Func used to translate a text from french to user's current country language
     private func getTranslation() {
         guard let coord = LocationManager.shared.coordinates else {
             self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
             return
         }
 
+        //API Call to get local country
         GeocodeService.shared.getGeocode(coord: coord, callback: { (success, result) in
             guard success, let geoRes = result,
                 let country = geoRes.plus_code.compound_code.split(separator: " ").last else {
@@ -41,6 +42,7 @@ class TranslateViewController: UIViewController {
         })
     }
 
+    //API Call to get country informations such as language or currency
     private func countryService(country: String) {
         CountryService.shared.getCountryInfo(country: country, callback: { (success, result) in
             guard success, let countryRes = result, countryRes.languages.indices.contains(0) else {
@@ -52,6 +54,7 @@ class TranslateViewController: UIViewController {
         })
     }
 
+    //API Call to get translated text from french to local language
     private func translateService(language: String) {
         guard let text = userTextView.text else {
             self.presentAlert(titre: "Erreur", message: "Pas de texte à traduire !")
@@ -71,6 +74,7 @@ class TranslateViewController: UIViewController {
         })
     }
 
+    //Creates an alert with a title and a message
     private func presentAlert(titre: String, message: String) {
         let alertVC = UIAlertController(title: titre, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -78,6 +82,7 @@ class TranslateViewController: UIViewController {
     }
 }
 
+//Used to handle keyboard dismiss and create a placeholder
 extension TranslateViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {

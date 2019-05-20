@@ -31,6 +31,7 @@ class TranslateService {
         self.translateSession = translateSession
     }
 
+    //Request to Google Translation API, to translate a text from french to an other language
     func getTranslation(language: String, text: String, callback: @escaping (Bool, TranslationRequest?) -> Void) {
 
         let components = URLComponents(string: "https://translation.googleapis.com/language/translate/v2")

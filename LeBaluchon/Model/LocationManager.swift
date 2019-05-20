@@ -23,29 +23,22 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
     private(set) var coordinates: Coordinates?
 
-    var canAccessLocation: Bool {
-        switch CLLocationManager.authorizationStatus() {
-        case .denied, .notDetermined, .restricted:
-            return false
-        default:
-            return true
-        }
-    }
-
-    private func postNotification(coordinates: Coordinates) {
+    //used to post notification when coordiantes are found
+    private func postNotification() {
         NotificationCenter.default.post(name: .didFoundLocation, object: nil)
     }
 
+    //Called when location is updated
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let loc = manager.location else {
             return
         }
-        let coord = Coordinates(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
-        self.coordinates = coord
+        self.coordinates = Coordinates(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
         manager.stopUpdatingLocation()
-        postNotification(coordinates: coord)
+        postNotification()
     }
 
+    //Return a LocationStatus, that tells if we can access location or not
     func canGetLocation() -> LocationStatus {
         locationManager.requestWhenInUseAuthorization()
         switch CLLocationManager.authorizationStatus() {

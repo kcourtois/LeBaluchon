@@ -25,6 +25,7 @@ class ExchangeViewController: UIViewController {
         imageWhiteBar.imageView.image = #imageLiteral(resourceName: "bourse")
     }
 
+    //Retrieves rate for local currency
     func setRateLabel() {
         ExchangeRateService.shared.getRate { (success, result) in
             guard success, let exRes = result else {
@@ -38,6 +39,7 @@ class ExchangeViewController: UIViewController {
         }
     }
 
+    //API Call to retrive local country
     private func geocodeService() {
         guard let coord = LocationManager.shared.coordinates else {
             self.presentAlert(titre: "Erreur", message: "Impossible de déterminer votre position.")
@@ -53,6 +55,7 @@ class ExchangeViewController: UIViewController {
         })
     }
 
+    //API Call to retrieve local currency
     private func countryService(country: String) {
         CountryService.shared.getCountryInfo(country: country, callback: { (success, result) in
             guard success, let countryRes = result else {
@@ -87,6 +90,7 @@ class ExchangeViewController: UIViewController {
         resultLabel.text = "\(String(format: "%.2f", valueToConvert*rate))"
     }
 
+    //Creates an alert with a title and a message
     private func presentAlert(titre: String, message: String) {
         let alertVC = UIAlertController(title: titre, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
